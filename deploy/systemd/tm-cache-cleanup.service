@@ -1,0 +1,11 @@
+[Unit]
+Description=twitch-music: чистка кэша треков
+
+[Service]
+Type=oneshot
+WorkingDirectory=/root/twitch-music
+ExecStart=/root/twitch-music/tools/cache-cleanup.sh
+Environment=CACHE_DIR=/root/twitch-music/cache
+Environment=CACHE_KEEP_DAYS=30
+StandardOutput=append:/root/twitch-music/logs/cache-cleanup.log
+StandardError=append:/root/twitch-music/logs/cache-cleanup.log

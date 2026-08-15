@@ -1,0 +1,25 @@
+# go-librespot: играет Spotify под Premium-аккаунтом фаундера и отдаёт сырой звук
+# в именованный канал, откуда его забирает liquidsoap и подмешивает в общий эфир.
+device_name: "dev>nulll music"
+device_type: computer
+bitrate: 320
+
+audio_backend: pipe
+audio_output_pipe: /root/twitch-music/run/spotify.fifo
+audio_output_pipe_format: s16le
+
+# Обнаружение по сети не нужно и вредно: устройство светилось бы соседям по подсети VPS.
+zeroconf_enabled: false
+credentials:
+  type: interactive
+
+# REST API — им сервис командует «играй этот трек» и слушает события о конце трека.
+server:
+  enabled: true
+  address: 127.0.0.1
+  port: 3678
+
+# Кэш ускоряет повторный заказ того же трека. Файлы шифрованные и без аккаунта бесполезны.
+cache:
+  enabled: true
+  size_limit: 2GB

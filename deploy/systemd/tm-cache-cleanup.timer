@@ -1,0 +1,12 @@
+[Unit]
+Description=twitch-music: чистка кэша треков раз в сутки
+
+[Timer]
+# Ночью по UTC — заведомо мимо эфиров Азима, хотя чистка и так безвредна для звука.
+OnCalendar=*-*-* 04:30:00
+# Если сервер был выключен в назначенный час, отработать после включения, а не ждать сутки.
+Persistent=true
+RandomizedDelaySec=10m
+
+[Install]
+WantedBy=timers.target

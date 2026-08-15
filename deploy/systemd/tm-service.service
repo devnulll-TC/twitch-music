@@ -1,0 +1,16 @@
+[Unit]
+Description=twitch-music: song requests для канала Азима
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=/root/twitch-music
+ExecStart=/root/twitch-music/tm-service
+Environment=PATH=/usr/local/bin:/usr/local/go/bin:/usr/bin:/bin
+Restart=always
+RestartSec=3s
+StandardOutput=append:/root/twitch-music/logs/service.log
+StandardError=append:/root/twitch-music/logs/service.log
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,20 @@
+services:
+  liquidsoap:
+    image: savonet/liquidsoap:v2.3.3
+    container_name: tm-liquidsoap
+    restart: unless-stopped
+    env_file: .env
+    command: ["/etc/liquidsoap/radio.liq"]
+    volumes:
+      - ./liquidsoap:/etc/liquidsoap:ro
+      - ./cache:/cache
+      # именованный канал со звуком Spotify (пишет go-librespot на хосте)
+      - ./run:/run/tm
+    ports:
+      # Поток наружу: его слушает OBS Азима из Сиднея.
+      - "8000:8000"
+      # Управление очередью — только с самого сервера, наружу не торчит.
+      - "127.0.0.1:1234:1234"
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }

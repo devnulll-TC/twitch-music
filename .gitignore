@@ -1,0 +1,19 @@
+# --- секреты и живые учётки ---
+.env
+secrets/
+# ⚠️ librespot/state.json — РЕАЛЬНЫЕ учётные данные Spotify (reusable auth blob).
+# Никогда не коммитить: попадание в git = компрометация аккаунта.
+librespot/state.json
+librespot/lockfile
+
+# ⚠️ nginx-dev-nulll.bak — бэкап боевого конфига с секретными префиксами путей
+# (панель music и оверлей ai-manhunt). Префикс здесь и есть защита, см. docs.
+nginx-dev-nulll.bak
+
+# --- рантайм-состояние (живёт на сервере, не в истории) ---
+cache/
+leaderboard.json
+tm-service
+
+# --- сборка ---
+*.exe
