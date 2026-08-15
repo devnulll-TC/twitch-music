@@ -63,7 +63,6 @@ tm_monitor_volume = interactive.float("tm_monitor_volume", 1.0)
 # стоит override=null(), а забирает поле только эта.
 radio = amplify(id="normalize", 1.0, radio)
 
-# Громкость выравниваем позже (Ф4): на YouTube разброс по трекам больше 10 дБ.
 # Считаем слушателей сам плеер: подсчёт сокетов снаружи врал (докерный NAT прячет
 # реальные соединения), а harbor знает своих клиентов точно.
 clients = ref(0)
